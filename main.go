@@ -14,8 +14,13 @@ func main() {
 	if len(args) >= 1 {
 		switch args[0] {
 		case "firefox":
+			err := os.MkdirAll("tmp", os.ModePerm)
+			if err != nil {
+				fmt.Println(err)
+				break
+			}
 			fmt.Println("updating firefox...")
-			err := download("tmp/firefox-developer.tar.bz", "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US")
+			err = download("tmp/firefox-developer.tar.bz", "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US")
 			if err != nil {
 				fmt.Println(err)
 				break
